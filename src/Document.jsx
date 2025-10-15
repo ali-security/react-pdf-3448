@@ -115,7 +115,9 @@ export default class Document extends PureComponent {
 
         const { options, onLoadProgress, onPassword } = this.props;
 
-        const destroyable = pdfjs.getDocument({ ...source, ...options });
+        const optionsWithIsEvalSupportedDisabled = { ...options, isEvalSupported: false };
+
+        const destroyable = pdfjs.getDocument({ ...source, ...optionsWithIsEvalSupportedDisabled });
         destroyable.onPassword = onPassword;
         if (onLoadProgress) {
           destroyable.onProgress = onLoadProgress;
